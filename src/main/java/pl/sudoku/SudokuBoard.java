@@ -8,39 +8,17 @@ public class SudokuBoard {
     private final int cols = 9;
     private final int rows = 9;
     private final int[][] board = new int[rows][cols];
+    private final SudokuSolver solver;
 
-    public SudokuBoard() {
+    public SudokuBoard(final SudokuSolver solverType) {
+        this.solver = solverType;
         Arrays.stream(board).forEach(a -> Arrays.fill(a, 0));
         fillRandomDiagonal();
     }
 
-    public boolean fillBoard() {
+    public void solveGame() {
 
-        for (int i = 0; i < rows; i++) {
-
-            for (int j = 0; j < cols; j++) {
-
-                if (board[i][j] == 0) {
-
-                    for (int k = 1; k <= 9; k++) {
-
-                        if (checkValidation(k, i, j)) {
-
-                            board[i][j] = k;
-                            if (fillBoard()) {
-                                return true;
-                            } else {
-                                board[i][j] = 0;
-                            }
-                        }
-                    }
-
-                    return false;
-                }
-            }
-        }
-
-        return true;
+        solver.solve(this);
     }
 
     public void fillRandomDiagonal() {
@@ -92,7 +70,9 @@ public class SudokuBoard {
         return board[x][y];
     }
 
-    public void set(int x, int y, int value) { board[x][y] = value; }
+    public void set(int x, int y, int value) {
+        board[x][y] = value;
+    }
 
     public int getRows() {
         return rows;
@@ -107,7 +87,7 @@ public class SudokuBoard {
         int amount = 0;
         for (int i = 0; i < getCols(); i++) {
 
-            if(board[row][i] == number) {
+            if (board[row][i] == number) {
                 amount++;
             }
         }
@@ -120,7 +100,7 @@ public class SudokuBoard {
         int amount = 0;
         for (int i = 0; i < getCols(); i++) {
 
-            if(board[i][col] == number) {
+            if (board[i][col] == number) {
                 amount++;
             }
         }
@@ -135,7 +115,9 @@ public class SudokuBoard {
 
             for (int j = 0; j < 3; j++) {
 
-                if(board[i][j] == number) amount++;
+                if (board[i][j] == number) {
+                    amount++;
+                }
             }
         }
 

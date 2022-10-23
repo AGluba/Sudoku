@@ -14,14 +14,15 @@ public class SudokuBoardTest {
 
     @Test
     void CompareTwoBoards() {
-        SudokuBoard boardFirst = new SudokuBoard();
-        SudokuBoard boardSecond = new SudokuBoard();
+        SudokuSolver solver = new BacktrackingSudokuSolver();
+        final SudokuBoard boardFirst = new SudokuBoard(solver);
+        final SudokuBoard boardSecond = new SudokuBoard(solver);
 
-        boardFirst.fillBoard();
-        boardSecond.fillBoard();
+        boardFirst.solveGame();
+        boardSecond.solveGame();
 
         boolean checked = false;
-        for(int i = 0; i < boardFirst.getRows(); i++){
+        for (int i = 0; i < boardFirst.getRows(); i++){
 
             for(int j = 0; j < boardFirst.getCols(); j++){
 
@@ -34,24 +35,27 @@ public class SudokuBoardTest {
 
     @Test
     void rowCheck() {
-        SudokuBoard board = new SudokuBoard();
-        board.fillBoard();
+        SudokuSolver solver = new BacktrackingSudokuSolver();
+        SudokuBoard board = new SudokuBoard(solver);
+        board.solveGame();
 
         assertTrue(board.checkRow(7, 2));
     }
 
     @Test
     void colCheck() {
-        SudokuBoard board = new SudokuBoard();
-        board.fillBoard();
+        SudokuSolver solver = new BacktrackingSudokuSolver();
+        SudokuBoard board = new SudokuBoard(solver);
+        board.solveGame();
 
         assertTrue(board.checkCol(3, 7));
     }
 
     @Test
     void matrixCheck() {
-        SudokuBoard board = new SudokuBoard();
-        board.fillBoard();
+        SudokuSolver solver = new BacktrackingSudokuSolver();
+        SudokuBoard board = new SudokuBoard(solver);
+        board.solveGame();
 
         assertTrue(board.checkMatrix(7));
     }
