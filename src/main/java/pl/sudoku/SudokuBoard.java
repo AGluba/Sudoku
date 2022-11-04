@@ -7,12 +7,12 @@ import java.util.List;
 public class SudokuBoard {
     private final int cols = 9;
     private final int rows = 9;
-    private final int[][] board = new int[rows][cols];
+    private final SudokuField[][] board = new SudokuField[rows][cols];
     private final SudokuSolver solver;
 
-    public SudokuBoard(final SudokuSolver solverType) {
+    public SudokuBoard(SudokuSolver solverType) {
         this.solver = solverType;
-        Arrays.stream(board).forEach(a -> Arrays.fill(a, 0));
+        Arrays.stream(board).forEach(a -> Arrays.fill(a, new SudokuField(0)));
         fillRandomDiagonal();
     }
 
@@ -30,48 +30,17 @@ public class SudokuBoard {
 
         for (int i = 0; i < rows; i++) {
 
-            board[i][i] = intArray[i];
+            SudokuField field = new SudokuField(intArray[i]);
+            board[i][i] = field;
         }
-    }
-
-    public boolean checkValidation(int number, int row, int col) {
-
-        for (int i = 0; i < board.length; i++) {
-
-            if (board[row][i] == number) {
-                return false;
-            }
-        }
-
-        for (int i = 0; i < board.length; i++) {
-
-            if (board[i][col] == number) {
-                return false;
-            }
-        }
-
-        int r = row - row % 3;
-        int c = col - col % 3;
-
-        for (int i = r; i < r + 3; i++) {
-
-            for (int j = c; j < c + 3; j++) {
-
-                if (board[i][j] == number) {
-                    return false;
-                }
-            }
-        }
-
-        return true;
     }
 
     public int get(int x, int y) {
-        return board[x][y];
+        return board[x][y].getFieldValue();
     }
 
     public void set(int x, int y, int value) {
-        board[x][y] = value;
+        board[x][y].setFieldValue(value);
     }
 
     public int getRows() {
@@ -80,47 +49,5 @@ public class SudokuBoard {
 
     public int getCols() {
         return cols;
-    }
-
-    public boolean checkRow(int number, int row) {
-
-        int amount = 0;
-        for (int i = 0; i < getCols(); i++) {
-
-            if (board[row][i] == number) {
-                amount++;
-            }
-        }
-
-        return amount == 1;
-    }
-
-    public boolean checkCol(int number, int col) {
-
-        int amount = 0;
-        for (int i = 0; i < getCols(); i++) {
-
-            if (board[i][col] == number) {
-                amount++;
-            }
-        }
-
-        return amount == 1;
-    }
-
-    public boolean checkMatrix(int number) {
-
-        int amount = 0;
-        for (int i = 0; i < 3; i++) {
-
-            for (int j = 0; j < 3; j++) {
-
-                if (board[i][j] == number) {
-                    amount++;
-                }
-            }
-        }
-
-        return amount == 1;
     }
 }

@@ -34,29 +34,58 @@ public class SudokuBoardTest {
     }
 
     @Test
-    void rowCheck() {
+    void getFieldTest() {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard board = new SudokuBoard(solver);
         board.solveGame();
 
-        assertTrue(board.checkRow(7, 2));
+
+        board.set(0, 0, 9);
+        assertEquals(board.get(0, 0), 9);
     }
 
     @Test
-    void colCheck() {
+    void getRowsTest() {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard board = new SudokuBoard(solver);
         board.solveGame();
 
-        assertTrue(board.checkCol(3, 7));
+        assertEquals(board.getRows(), 9);
     }
 
     @Test
-    void matrixCheck() {
+    void getColsTest() {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard board = new SudokuBoard(solver);
         board.solveGame();
 
-        assertTrue(board.checkMatrix(7));
+        assertEquals(board.getCols(), 9);
+    }
+
+    @Test
+    void checkRowTest() {
+        SudokuSolver solver = new BacktrackingSudokuSolver();
+        SudokuBoard board = new SudokuBoard(solver);
+        board.solveGame();
+
+        assertEquals(board.checkRow(7, 2), 1);
+    }
+
+    @Test
+    void checkColTest() {
+        SudokuSolver solver = new BacktrackingSudokuSolver();
+        SudokuBoard board = new SudokuBoard(solver);
+        board.solveGame();
+
+        assertEquals(board.checkCol(7, 2), 1);
+    }
+
+    @Test
+    void checkMatrixTest() {
+        SudokuSolver solver = new BacktrackingSudokuSolver();
+        SudokuBoard board = new SudokuBoard(solver);
+        board.solveGame();
+
+        assertEquals(board.checkMatrix(7), 1);
     }
 }
