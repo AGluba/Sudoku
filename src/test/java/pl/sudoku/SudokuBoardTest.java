@@ -1,16 +1,13 @@
 package pl.sudoku;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 
 public class SudokuBoardTest {
-
-    public SudokuBoardTest() {
-    }
 
     @Test
     void CompareTwoBoards() {
@@ -63,29 +60,108 @@ public class SudokuBoardTest {
     }
 
     @Test
-    void checkRowTest() {
+    void checkGetRow() {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard board = new SudokuBoard(solver);
-        board.solveGame();
+        SudokuRow row = board.getRow(0);
 
-        assertEquals(board.checkRow(7, 2), 1);
+        boolean checked = true;
+        for (int i = 0; i < 9; i++) {
+
+            if (row.getFields()[i].getFieldValue() != board.get(0, i)) {
+
+                checked = false;
+            }
+        }
+
+        assertTrue(checked);
     }
 
     @Test
-    void checkColTest() {
+    void checkGetColumn() {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard board = new SudokuBoard(solver);
-        board.solveGame();
+        SudokuColumn column = board.getColumn(0);
 
-        assertEquals(board.checkCol(7, 2), 1);
+        boolean checked = true;
+        for (int i = 0; i < 9; i++) {
+
+            if (column.getFields()[i].getFieldValue() != board.get(i, 0)) {
+
+                checked = false;
+            }
+        }
+
+        assertTrue(checked);
     }
 
     @Test
-    void checkMatrixTest() {
+    void checkGetBox() {
+        SudokuSolver solver = new BacktrackingSudokuSolver();
+        SudokuBoard board = new SudokuBoard(solver);
+        SudokuBox box = board.getBox(0, 0);
+
+        boolean checked = true;
+        int x = 0;
+        int y = 0;
+        for (int i = 0; i < 9; i++) {
+
+            if(i % 3 == 0 && i != 0) {
+
+                x++;
+                y = 0;
+            }
+
+            if (box.getFields()[i].getFieldValue() != board.get(x, y)) {
+
+                checked = false;
+            }
+
+            y++;
+        }
+
+        assertTrue(checked);
+    }
+
+    @Test
+    void checkBoardTrueTest() {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard board = new SudokuBoard(solver);
         board.solveGame();
 
-        assertEquals(board.checkMatrix(7), 1);
+        assertTrue(board.checkBoard());
+    }
+
+    @Test
+    void checkBoardFalseTest() {
+        SudokuSolver solver = new BacktrackingSudokuSolver();
+        SudokuBoard board = new SudokuBoard(solver);
+        board.solveGame();
+
+        board.set(1, 1, board.get(0, 0));
+
+        assertFalse(board.checkBoard());
+    }
+
+    @Test
+    void checkBoardRowFalseTest() {
+        SudokuSolver solver = new BacktrackingSudokuSolver();
+        SudokuBoard board = new SudokuBoard(solver);
+        board.solveGame();
+
+        board.set(0, 4, board.get(0, 0));
+
+        assertFalse(board.checkBoard());
+    }
+
+    @Test
+    void checkBoardColumnFalseTest() {
+        SudokuSolver solver = new BacktrackingSudokuSolver();
+        SudokuBoard board = new SudokuBoard(solver);
+        board.solveGame();
+
+        board.set(2, 0, board.get(0, 0));
+
+        assertFalse(board.checkBoard());
     }
 }

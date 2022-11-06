@@ -11,14 +11,21 @@ public class SudokuBoard {
     private final SudokuSolver solver;
 
     public SudokuBoard(SudokuSolver solverType) {
+
         this.solver = solverType;
-        Arrays.stream(board).forEach(a -> Arrays.fill(a, new SudokuField(0)));
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                board[i][j] = new SudokuField(0);
+            }
+        }
+
         fillRandomDiagonal();
     }
 
     public void solveGame() {
 
         solver.solve(this);
+        checkBoard();
     }
 
     public void fillRandomDiagonal() {
@@ -43,11 +50,117 @@ public class SudokuBoard {
         board[x][y].setFieldValue(value);
     }
 
+    public boolean checkBoard() {
+
+        int col = 0;
+        int row = 0;
+        for (int i = 0; i < 9; i++) {
+
+            if (i % 3 == 0 && i != 0) {
+
+                row = 0;
+                col++;
+            }
+
+            if (!getRow(i).verify()) {
+
+                return false;
+            }
+
+            if (!getColumn(i).verify()) {
+
+                return false;
+            }
+
+            if (!getBox(col, row).verify()) {
+
+                return false;
+            }
+
+            row++;
+        }
+
+        return true;
+    }
+
+    public SudokuRow getRow(int y) {
+
+        SudokuField[] fields = new SudokuField[9];
+        for (int i = 0; i < 9; i++) {
+
+            fields[i] = board[y][i];
+        }
+
+        return new SudokuRow(fields);
+    }
+
+    public SudokuColumn getColumn(int x) {
+
+        SudokuField[] fields = new SudokuField[9];
+        for (int i = 0; i < 9; i++) {
+
+            fields[i] = board[i][x];
+        }
+
+        return new SudokuColumn(fields);
+    }
+
+    public SudokuBox getBox(int x, int y) {
+
+        SudokuField[] fields = new SudokuField[9];
+        int startR = 3 * x;
+        int startC = 3 * y;
+        int temp = startR;
+        for (int i = 0; i < 9; i++) {
+
+            if (i % 3 == 0 && i != 0) {
+
+                temp = startR;
+                startC++;
+            }
+            fields[i] = board[startC][temp];
+            temp++;
+        }
+        return new SudokuBox(fields);
+    }
+
     public int getRows() {
         return rows;
     }
 
     public int getCols() {
         return cols;
+    }
+
+    public boolean checkValidation(int number, int row, int col) {
+
+        for (int i = 0; i < getRows(); i++) {
+
+            if (get(row, i) == number) {
+                return false;
+            }
+        }
+
+        for (int i = 0; i < getCols(); i++) {
+
+            if (get(i, col) == number) {
+                return false;
+            }
+        }
+
+        int r = row - row % 3;
+        int c = col - col % 3;
+
+        for (int i = r; i < r + 3; i++) {
+
+            for (int j = c; j < c + 3; j++) {
+
+                if (get(i, j) == number) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 }
