@@ -1,9 +1,11 @@
 package pl.sudoku;
 
-abstract class SudokuFragment {
-    private final SudokuField[] fields;
+import java.util.List;
 
-    public SudokuFragment(SudokuField[] fields) {
+abstract class SudokuFragment {
+    private final List<SudokuField> fields;
+
+    public SudokuFragment(List<SudokuField> fields) {
         this.fields = fields;
     }
 
@@ -12,7 +14,7 @@ abstract class SudokuFragment {
 
             for (int j = i + 1; j < 9; j++) {
 
-                if (fields[i].getFieldValue() == fields[j].getFieldValue()) {
+                if (fields.get(i).getFieldValue() == fields.get(j).getFieldValue()) {
 
                     return false;
                 }
@@ -22,7 +24,7 @@ abstract class SudokuFragment {
         return true;
     }
 
-    public SudokuField[] getFields() {
+    public List<SudokuField> getFields() {
         return fields;
     }
 }

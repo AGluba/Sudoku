@@ -1,8 +1,10 @@
 package pl.sudoku;
 
+import java.util.List;
+
 public class SudokuBox extends SudokuFragment {
 
-    public SudokuBox(SudokuField[] fields) {
+    public SudokuBox(List<SudokuField> fields) {
         super(fields);
     }
 }

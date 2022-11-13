@@ -68,7 +68,7 @@ public class SudokuBoardTest {
         boolean checked = true;
         for (int i = 0; i < 9; i++) {
 
-            if (row.getFields()[i].getFieldValue() != board.get(0, i)) {
+            if (row.getFields().get(i).getFieldValue() != board.get(0, i)) {
 
                 checked = false;
             }
@@ -86,7 +86,7 @@ public class SudokuBoardTest {
         boolean checked = true;
         for (int i = 0; i < 9; i++) {
 
-            if (column.getFields()[i].getFieldValue() != board.get(i, 0)) {
+            if (column.getFields().get(i).getFieldValue() != board.get(i, 0)) {
 
                 checked = false;
             }
@@ -112,7 +112,7 @@ public class SudokuBoardTest {
                 y = 0;
             }
 
-            if (box.getFields()[i].getFieldValue() != board.get(x, y)) {
+            if (box.getFields().get(i).getFieldValue() != board.get(x, y)) {
 
                 checked = false;
             }

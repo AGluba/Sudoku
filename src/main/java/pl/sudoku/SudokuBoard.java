@@ -85,10 +85,10 @@ public class SudokuBoard {
 
     public SudokuRow getRow(int y) {
 
-        SudokuField[] fields = new SudokuField[9];
+        List<SudokuField> fields = Arrays.asList(new SudokuField[9]);
         for (int i = 0; i < 9; i++) {
 
-            fields[i] = board[y][i];
+            fields.set(i, new SudokuField(board[y][i].getFieldValue()));
         }
 
         return new SudokuRow(fields);
@@ -96,10 +96,10 @@ public class SudokuBoard {
 
     public SudokuColumn getColumn(int x) {
 
-        SudokuField[] fields = new SudokuField[9];
+        List<SudokuField> fields = Arrays.asList(new SudokuField[9]);
         for (int i = 0; i < 9; i++) {
 
-            fields[i] = board[i][x];
+            fields.set(i, new SudokuField(board[i][x].getFieldValue()));
         }
 
         return new SudokuColumn(fields);
@@ -107,7 +107,7 @@ public class SudokuBoard {
 
     public SudokuBox getBox(int x, int y) {
 
-        SudokuField[] fields = new SudokuField[9];
+        List<SudokuField> fields = Arrays.asList(new SudokuField[9]);
         int startR = 3 * x;
         int startC = 3 * y;
         int temp = startR;
@@ -118,7 +118,7 @@ public class SudokuBoard {
                 temp = startR;
                 startC++;
             }
-            fields[i] = board[startC][temp];
+            fields.set(i, new SudokuField(board[startC][temp].getFieldValue()));
             temp++;
         }
         return new SudokuBox(fields);
