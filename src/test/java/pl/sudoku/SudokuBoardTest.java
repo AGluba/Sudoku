@@ -2,9 +2,7 @@ package pl.sudoku;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class SudokuBoardTest {
@@ -163,5 +161,103 @@ public class SudokuBoardTest {
         board.set(2, 0, board.get(0, 0));
 
         assertFalse(board.checkBoard());
+    }
+
+    @Test
+    void checkBoardToStringTest() {
+        SudokuSolver solver = new BacktrackingSudokuSolver();
+        SudokuBoard board = new SudokuBoard(solver);
+        board.solveGame();
+
+        System.out.println(board);
+
+        assertNotNull(board.toString());
+    }
+
+    @Test
+    void checkBoardEqualsTrueTest() {
+        SudokuSolver solver = new BacktrackingSudokuSolver();
+
+        //Domyslnie board1.equals(board2) True, Po nadpisaniu True
+        //SudokuBoard board1 = new SudokuBoard(solver);
+        //SudokuBoard board2 = board1;
+
+        //Domyslnie board1.equals(board2) False, Po nadpisaniu True
+        SudokuBoard board1 = new SudokuBoard(solver);
+        SudokuBoard board2 = new SudokuBoard(solver);
+
+        int value = 1;
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (i == j) {
+                    board1.set(i, j, value);
+                    board2.set(i, j, value);
+                }
+            }
+            value++;
+        }
+
+        assertEquals(board1, board2);
+    }
+
+    @Test
+    void checkBoardEqualsFalseTest() {
+        SudokuSolver solver = new BacktrackingSudokuSolver();
+
+        //Domyslnie board1.equals(board2) True, Po nadpisaniu True
+        //SudokuBoard board1 = new SudokuBoard(solver);
+        //SudokuBoard board2 = board1;
+
+        //Domyslnie board1.equals(board2) False, Po nadpisaniu True
+        SudokuBoard board1 = new SudokuBoard(solver);
+        SudokuBoard board2 = new SudokuBoard(solver);
+
+
+        assertNotEquals(board1, board2);
+    }
+
+    @Test
+    void checkBoardHashCodeTrueTest() {
+        SudokuSolver solver = new BacktrackingSudokuSolver();
+
+        //Domyslnie board1.hashCode() == board2.hashCode(), Po nadpisaniu board1.hashCode() == board2.hashCode()
+        //SudokuBoard board1 = new SudokuBoard(solver);
+        //SudokuBoard board2 = board1;
+
+        //Domyslnie board1.hashCode() != board2.hashCode(), Po nadpisaniu board1.hashCode() == board2.hashCode()
+        SudokuBoard board1 = new SudokuBoard(solver);
+        SudokuBoard board2 = new SudokuBoard(solver);
+
+        int value = 1;
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (i == j) {
+                    board1.set(i, j, value);
+                    board2.set(i, j, value);
+                }
+            }
+            value++;
+        }
+
+        assertEquals(board1.hashCode(), board2.hashCode());
+    }
+
+
+
+    @Test
+    void checkBoardHashCodeFalseTest() {
+        SudokuSolver solver = new BacktrackingSudokuSolver();
+
+        //Domyslnie board1.hashCode() == board2.hashCode(), Po nadpisaniu board1.hashCode() == board2.hashCode()
+        //SudokuBoard board1 = new SudokuBoard(solver);
+        //SudokuBoard board2 = board1;
+
+        //Domyslnie board1.hashCode() != board2.hashCode(), Po nadpisaniu board1.hashCode() == board2.hashCode()
+        SudokuBoard board1 = new SudokuBoard(solver);
+        board1.solveGame();
+        SudokuBoard board2 = new SudokuBoard(solver);
+        board2.solveGame();
+
+        assertNotEquals(board1.hashCode(), board2.hashCode());
     }
 }
