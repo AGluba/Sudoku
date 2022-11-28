@@ -2,8 +2,7 @@ package pl.sudoku;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SudokuFieldTest {
 
@@ -61,7 +60,11 @@ public class SudokuFieldTest {
 
         SudokuField field1 = new SudokuField(9);
         SudokuField field2 = new SudokuField(9);
+        SudokuBoard board = new SudokuBoard(null);
 
         assertEquals(field1, field2);
+        assertEquals(field1, field1);
+        assertNotEquals(field1, board);
+        assertNotEquals(field1, null);
     }
 }

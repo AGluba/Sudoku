@@ -3,9 +3,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>pl.sudoku</groupId>
-    <artifactId>Sudoku</artifactId>
-    <version>2.0</version>
-    <packaging>jar</packaging>
+    <artifactId>SudokoGameProject</artifactId>
+    <version>2.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
     <description>Projekt grupy laboratoryjnej nr.6</description>
 
@@ -32,7 +32,7 @@
     <name>00_${project.artifactId}-${project.version}</name>
 
     <url>http://maven.apache.org</url>
-    
+
     <reporting>
         <plugins>
             <plugin>
@@ -188,7 +188,7 @@
             <version>3.12.0</version>
         </dependency>
     </dependencies>
-    
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>

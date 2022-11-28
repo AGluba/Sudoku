@@ -2,6 +2,7 @@ package pl.sudoku;
 
 import org.junit.jupiter.api.Test;
 
+import java.net.SocketOption;
 import java.util.Arrays;
 import java.util.List;
 
@@ -77,8 +78,12 @@ public class SudokuFragmentTest {
 
         SudokuRow row = board.getRow(0);
         SudokuRow row2 = board.getRow(1);
+        SudokuColumn column = board.getColumn(1);
 
         assertEquals(row, row2);
+        assertEquals(row, row);
+        assertNotEquals(row, column);
+        assertNotEquals(row, null);
     }
 
     @Test
@@ -104,6 +109,8 @@ public class SudokuFragmentTest {
         board.set(1,1,0);
 
         SudokuRow row = board.getRow(0);
+
+        System.out.println(row);
 
         assertNotNull(row.toString());
     }

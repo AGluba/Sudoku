@@ -1,11 +1,12 @@
 package pl.sudoku;
 
+import java.io.Serializable;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-public class SudokuField {
+public class SudokuField implements Serializable {
 
     private int value;
 
@@ -28,7 +29,21 @@ public class SudokuField {
 
     @Override
     public boolean equals(Object o) {
-        return new EqualsBuilder().append(value, ((SudokuField) o).value).isEquals();
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null) {
+            return false;
+        }
+
+        if (getClass() != o.getClass())  {
+            return false;
+        }
+
+        SudokuField that = (SudokuField) o;
+
+        return new EqualsBuilder().append(value, that.value).isEquals();
     }
 
     @Override

@@ -169,8 +169,6 @@ public class SudokuBoardTest {
         SudokuBoard board = new SudokuBoard(solver);
         board.solveGame();
 
-        System.out.println(board);
-
         assertNotNull(board.toString());
     }
 
@@ -185,19 +183,17 @@ public class SudokuBoardTest {
         //Domyslnie board1.equals(board2) False, Po nadpisaniu True
         SudokuBoard board1 = new SudokuBoard(solver);
         SudokuBoard board2 = new SudokuBoard(solver);
+        SudokuBoard board3 = board1;
 
-        int value = 1;
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                if (i == j) {
-                    board1.set(i, j, value);
-                    board2.set(i, j, value);
-                }
+                board1.set(i, j, 2);
+                board2.set(i, j, 2);
             }
-            value++;
         }
 
-        assertEquals(board1, board2);
+        assertTrue(board1.equals(board2));
+        assertTrue(board1.equals(board3));
     }
 
     @Test
@@ -210,10 +206,10 @@ public class SudokuBoardTest {
 
         //Domyslnie board1.equals(board2) False, Po nadpisaniu True
         SudokuBoard board1 = new SudokuBoard(solver);
-        SudokuBoard board2 = new SudokuBoard(solver);
 
 
-        assertNotEquals(board1, board2);
+        assertNotEquals(board1, null);
+        assertNotEquals(board1, solver);
     }
 
     @Test
@@ -228,15 +224,11 @@ public class SudokuBoardTest {
         SudokuBoard board1 = new SudokuBoard(solver);
         SudokuBoard board2 = new SudokuBoard(solver);
 
-        int value = 1;
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                if (i == j) {
-                    board1.set(i, j, value);
-                    board2.set(i, j, value);
-                }
+                board1.set(i, j, 2);
+                board2.set(i, j, 2);
             }
-            value++;
         }
 
         assertEquals(board1.hashCode(), board2.hashCode());

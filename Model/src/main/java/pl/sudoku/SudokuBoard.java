@@ -1,5 +1,6 @@
 package pl.sudoku;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -8,7 +9,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-public class SudokuBoard {
+public class SudokuBoard implements Serializable {
     private final int cols = 9;
     private final int rows = 9;
     private final SudokuField[][] board = new SudokuField[rows][cols];
@@ -170,18 +171,31 @@ public class SudokuBoard {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE).append("board", board).toString();
+        return new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE)
+                .append("board", board).toString();
     }
 
     @Override
     public boolean equals(Object o) {
-        return new EqualsBuilder().append(board, ((SudokuBoard) o).board).isEquals();
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null) {
+            return false;
+        }
+
+        if (getClass() != o.getClass()) {
+            return false;
+        }
+
+        SudokuBoard that = (SudokuBoard) o;
+
+        return new EqualsBuilder().append(board, that.board).isEquals();
     }
 
     @Override
     public int hashCode() {
         return new HashCodeBuilder(17, 37).append(board).toHashCode();
     }
-
-
 }

@@ -1,6 +1,8 @@
 package pl.sudoku;
 
-public class BacktrackingSudokuSolver implements SudokuSolver {
+import java.io.Serializable;
+
+public class BacktrackingSudokuSolver implements SudokuSolver, Serializable {
 
     //https://www.youtube.com/watch?v=eqUwSA0xI-s&ab_channel=TechWithTim
     public boolean solve(SudokuBoard board) {

@@ -4,6 +4,7 @@ import java.util.List;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 abstract class SudokuFragment {
     private final List<SudokuField> fields;
@@ -33,7 +34,21 @@ abstract class SudokuFragment {
 
     @Override
     public boolean equals(Object o) {
-        return new EqualsBuilder().append(fields, ((SudokuFragment) o).fields).isEquals();
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null) {
+            return false;
+        }
+
+        if (getClass() != o.getClass()) {
+            return false;
+        }
+
+        SudokuFragment that = (SudokuFragment) o;
+
+        return new EqualsBuilder().append(fields, that.fields).isEquals();
     }
 
     @Override
@@ -43,7 +58,7 @@ abstract class SudokuFragment {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this)
+        return new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE)
                 .append("fields", fields)
                 .toString();
     }
