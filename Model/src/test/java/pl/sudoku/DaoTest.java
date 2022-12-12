@@ -1,7 +1,6 @@
 package pl.sudoku;
 
 import org.junit.jupiter.api.Test;
-import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -11,7 +10,7 @@ public class DaoTest {
     Dao<SudokuBoard> dao;
 
     @Test
-    void writeAndReadTest() {
+    public void writeAndReadTest() {
         SudokuBoard board = new SudokuBoard(new BacktrackingSudokuSolver());
         board.solveGame();
 
@@ -24,7 +23,7 @@ public class DaoTest {
     }
 
     @Test
-    void IOExceptionTest() {
+    public void IOExceptionTest() {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard testBoard = new SudokuBoard(solver);
         testBoard.solveGame();
@@ -35,7 +34,7 @@ public class DaoTest {
 
     @Test
     public void readIOExceptionTest() {
-        dao = factory.getFileDao("noFile.txt");
+        dao = factory.getFileDao("file.txt");
         assertThrows(RuntimeException.class, dao::read);
     }
 }

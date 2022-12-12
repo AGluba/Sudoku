@@ -2,7 +2,6 @@ package pl.sudoku;
 
 import org.junit.jupiter.api.Test;
 
-import java.net.SocketOption;
 import java.util.Arrays;
 import java.util.List;
 
@@ -11,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class SudokuFragmentTest {
 
     @Test
-    void verifyTrueTest() {
+    public void verifyTrueTest() {
         List<SudokuField> fields = Arrays.asList(new SudokuField[9]);
         fields.set(0, new SudokuField(1));
         fields.set(1, new SudokuField(2));
@@ -28,7 +27,7 @@ public class SudokuFragmentTest {
     }
 
     @Test
-    void verifyFalseTest() {
+    public void verifyFalseTest() {
         List<SudokuField> fields = Arrays.asList(new SudokuField[9]);
         fields.set(0, new SudokuField(1));
         fields.set(1, new SudokuField(1));
@@ -45,7 +44,7 @@ public class SudokuFragmentTest {
     }
 
     @Test
-    void listSizeTest() {
+    public void listSizeTest() {
         List<SudokuField> fields = Arrays.asList(new SudokuField[9]);
         fields.set(0, new SudokuField(1));
         fields.set(1, new SudokuField(1));
@@ -69,7 +68,7 @@ public class SudokuFragmentTest {
     }
 
     @Test
-    void equalsTest() {
+    public void equalsTest() {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard board = new SudokuBoard(solver);
         board.set(0,0,1);
@@ -87,7 +86,7 @@ public class SudokuFragmentTest {
     }
 
     @Test
-    void hashCodeTest() {
+    public void hashCodeTest() {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard board = new SudokuBoard(solver);
         board.set(0,0,1);
@@ -101,7 +100,7 @@ public class SudokuFragmentTest {
     }
 
     @Test
-    void toStringTest() {
+    public void toStringTest() {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard board = new SudokuBoard(solver);
         board.set(0,0,1);
@@ -113,5 +112,64 @@ public class SudokuFragmentTest {
         System.out.println(row);
 
         assertNotNull(row.toString());
+    }
+
+    @Test
+    public void setFieldTest() {
+        SudokuSolver solver = new BacktrackingSudokuSolver();
+        SudokuBoard board = new SudokuBoard(solver);
+
+        SudokuColumn column = board.getColumn(0);
+        column.setValue(1, 2);
+
+        assertEquals(2, column.getField(1).getFieldValue());
+    }
+
+    @Test
+    public void cloneColumnTest() throws CloneNotSupportedException {
+        SudokuSolver solver = new BacktrackingSudokuSolver();
+        SudokuBoard board = new SudokuBoard(solver);
+
+        SudokuColumn column = board.getColumn(0);
+        SudokuColumn columnClone = column.clone();
+
+        assertEquals(column, columnClone);
+
+        columnClone.getField(1).setFieldValue(columnClone.getField(0).getFieldValue());
+        assertNotEquals(column, columnClone);
+
+        assertNotSame(column, columnClone);
+    }
+
+    @Test
+    public void cloneRowTest() throws CloneNotSupportedException {
+        SudokuSolver solver = new BacktrackingSudokuSolver();
+        SudokuBoard board = new SudokuBoard(solver);
+
+        SudokuRow row = board.getRow(0);
+        SudokuRow rowClone = row.clone();
+
+        assertEquals(row, rowClone);
+
+        rowClone.getField(1).setFieldValue(rowClone.getField(0).getFieldValue());
+        assertNotEquals(row, rowClone);
+
+        assertNotSame(row, rowClone);
+    }
+
+    @Test
+    public void cloneBoxTest() throws CloneNotSupportedException {
+        SudokuSolver solver = new BacktrackingSudokuSolver();
+        SudokuBoard board = new SudokuBoard(solver);
+
+        SudokuBox box = board.getBox(0, 0);
+        SudokuBox boxClone = box.clone();
+
+        assertEquals(box, boxClone);
+
+        boxClone.getField(1).setFieldValue(boxClone.getField(0).getFieldValue());
+        assertNotEquals(box, boxClone);
+
+        assertNotSame(box, boxClone);
     }
 }

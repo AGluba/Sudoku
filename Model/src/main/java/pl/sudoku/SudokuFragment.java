@@ -1,12 +1,13 @@
 package pl.sudoku;
 
+import java.io.Serializable;
 import java.util.List;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-abstract class SudokuFragment {
+abstract class SudokuFragment implements Serializable, Cloneable {
     private final List<SudokuField> fields;
 
     public SudokuFragment(List<SudokuField> fields) {
@@ -61,5 +62,13 @@ abstract class SudokuFragment {
         return new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE)
                 .append("fields", fields)
                 .toString();
+    }
+
+    public void setValue(int i, int value) {
+        fields.set(i, new SudokuField(value));
+    }
+
+    public SudokuField getField(int i) {
+        return fields.get(i);
     }
 }

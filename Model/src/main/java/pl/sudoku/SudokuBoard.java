@@ -9,10 +9,10 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-public class SudokuBoard implements Serializable {
+public class SudokuBoard implements Serializable, Cloneable {
     private final int cols = 9;
     private final int rows = 9;
-    private final SudokuField[][] board = new SudokuField[rows][cols];
+    private SudokuField[][] board = new SudokuField[rows][cols];
     private final SudokuSolver solver;
 
     public SudokuBoard(SudokuSolver solverType) {
@@ -197,5 +197,26 @@ public class SudokuBoard implements Serializable {
     @Override
     public int hashCode() {
         return new HashCodeBuilder(17, 37).append(board).toHashCode();
+    }
+
+    @Override
+    public SudokuBoard clone() throws CloneNotSupportedException {
+
+        SudokuBoard clone = (SudokuBoard) super.clone();
+        clone.board = new SudokuField[cols][rows];
+        for (int i = 0; i < getCols(); i++) {
+
+            for (int j = 0; j < getRows(); j++) {
+
+                clone.board[i][j] = getField(i, j).clone();
+            }
+        }
+
+        return clone;
+    }
+
+    public SudokuField getField(int i, int j) {
+
+        return board[i][j];
     }
 }

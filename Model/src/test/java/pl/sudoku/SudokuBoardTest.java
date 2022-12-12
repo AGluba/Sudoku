@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class SudokuBoardTest {
 
     @Test
-    void CompareTwoBoards() {
+    public void CompareTwoBoards() {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         final SudokuBoard boardFirst = new SudokuBoard(solver);
         final SudokuBoard boardSecond = new SudokuBoard(solver);
@@ -29,7 +29,7 @@ public class SudokuBoardTest {
     }
 
     @Test
-    void getFieldTest() {
+    public void getFieldTest() {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard board = new SudokuBoard(solver);
         board.solveGame();
@@ -40,7 +40,7 @@ public class SudokuBoardTest {
     }
 
     @Test
-    void getRowsTest() {
+    public void getRowsTest() {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard board = new SudokuBoard(solver);
         board.solveGame();
@@ -49,7 +49,7 @@ public class SudokuBoardTest {
     }
 
     @Test
-    void getColsTest() {
+    public void getColsTest() {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard board = new SudokuBoard(solver);
         board.solveGame();
@@ -58,7 +58,7 @@ public class SudokuBoardTest {
     }
 
     @Test
-    void checkGetRow() {
+    public void checkGetRow() {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard board = new SudokuBoard(solver);
         SudokuRow row = board.getRow(0);
@@ -76,7 +76,7 @@ public class SudokuBoardTest {
     }
 
     @Test
-    void checkGetColumn() {
+    public void checkGetColumn() {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard board = new SudokuBoard(solver);
         SudokuColumn column = board.getColumn(0);
@@ -94,7 +94,7 @@ public class SudokuBoardTest {
     }
 
     @Test
-    void checkGetBox() {
+    public void checkGetBox() {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard board = new SudokuBoard(solver);
         SudokuBox box = board.getBox(0, 0);
@@ -122,7 +122,7 @@ public class SudokuBoardTest {
     }
 
     @Test
-    void checkBoardTrueTest() {
+    public void checkBoardTrueTest() {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard board = new SudokuBoard(solver);
         board.solveGame();
@@ -131,7 +131,7 @@ public class SudokuBoardTest {
     }
 
     @Test
-    void checkBoardFalseTest() {
+    public void checkBoardFalseTest() {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard board = new SudokuBoard(solver);
         board.solveGame();
@@ -142,7 +142,7 @@ public class SudokuBoardTest {
     }
 
     @Test
-    void checkBoardRowFalseTest() {
+    public void checkBoardRowFalseTest() {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard board = new SudokuBoard(solver);
         board.solveGame();
@@ -153,7 +153,7 @@ public class SudokuBoardTest {
     }
 
     @Test
-    void checkBoardColumnFalseTest() {
+    public void checkBoardColumnFalseTest() {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard board = new SudokuBoard(solver);
         board.solveGame();
@@ -164,7 +164,7 @@ public class SudokuBoardTest {
     }
 
     @Test
-    void checkBoardToStringTest() {
+    public void checkBoardToStringTest() {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard board = new SudokuBoard(solver);
         board.solveGame();
@@ -173,7 +173,7 @@ public class SudokuBoardTest {
     }
 
     @Test
-    void checkBoardEqualsTrueTest() {
+    public void checkBoardEqualsTrueTest() {
         SudokuSolver solver = new BacktrackingSudokuSolver();
 
         //Domyslnie board1.equals(board2) True, Po nadpisaniu True
@@ -197,7 +197,7 @@ public class SudokuBoardTest {
     }
 
     @Test
-    void checkBoardEqualsFalseTest() {
+    public void checkBoardEqualsFalseTest() {
         SudokuSolver solver = new BacktrackingSudokuSolver();
 
         //Domyslnie board1.equals(board2) True, Po nadpisaniu True
@@ -213,7 +213,7 @@ public class SudokuBoardTest {
     }
 
     @Test
-    void checkBoardHashCodeTrueTest() {
+    public void checkBoardHashCodeTrueTest() {
         SudokuSolver solver = new BacktrackingSudokuSolver();
 
         //Domyslnie board1.hashCode() == board2.hashCode(), Po nadpisaniu board1.hashCode() == board2.hashCode()
@@ -237,7 +237,7 @@ public class SudokuBoardTest {
 
 
     @Test
-    void checkBoardHashCodeFalseTest() {
+    public void checkBoardHashCodeFalseTest() {
         SudokuSolver solver = new BacktrackingSudokuSolver();
 
         //Domyslnie board1.hashCode() == board2.hashCode(), Po nadpisaniu board1.hashCode() == board2.hashCode()

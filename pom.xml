@@ -9,6 +9,11 @@
 
     <description>Projekt grupy laboratoryjnej nr.6</description>
 
+    <modules>
+        <module>Model</module>
+        <module>View</module>
+    </modules>
+
     <developers>
         <developer>
             <id>242393</id>
@@ -49,6 +54,7 @@
                     <encoding>UTF-8</encoding>
                     <consoleOutput>true</consoleOutput>
                     <linkXRef>false</linkXRef>
+                    <excludes>**/module-info.java</excludes>
                 </configuration>
                 <reportSets>
                     <reportSet>
@@ -104,6 +110,7 @@
                     <consoleOutput>true</consoleOutput>
                     <failsOnError>true</failsOnError>
                     <linkXRef>false</linkXRef>
+                    <excludes>**/module-info.java</excludes>
                 </configuration>
                 <executions>
                     <execution>
@@ -166,16 +173,19 @@
                 <artifactId>maven-site-plugin</artifactId>
                 <version>3.8.2</version>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.10.1</version>
+                <configuration>
+                    <source>19</source>
+                    <target>19</target>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
     <dependencies>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.9.0</version>
-            <scope>test</scope>
-        </dependency>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
@@ -186,6 +196,16 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.12.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>19-ea+7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>19-ea+7</version>
         </dependency>
     </dependencies>
 
