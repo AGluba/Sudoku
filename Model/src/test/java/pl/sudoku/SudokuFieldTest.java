@@ -114,6 +114,9 @@ public class SudokuFieldTest {
         SudokuField field1 = new SudokuField(9);
         SudokuField field2 = field1.clone();
 
+        assertEquals(field1, field2);
+        assertNotSame(field1, field2);
+
         field2.setFieldValue(4);
 
         assertNotEquals(field1.getFieldValue(), field2.getFieldValue());

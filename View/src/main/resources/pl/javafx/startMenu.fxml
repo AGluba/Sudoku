@@ -4,7 +4,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="347.0" prefWidth="402.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.sudoku.StartMenuController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="347.0" prefWidth="402.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.javafx.StartMenuController">
    <children>
       <Button fx:id="startButton" layoutX="137.0" layoutY="165.0" mnemonicParsing="false" onAction="#startButtonPress" prefHeight="57.0" prefWidth="127.0" text="Start" />
       <ComboBox fx:id="chooseDifficulty" layoutX="109.0" layoutY="26.0" prefHeight="49.0" prefWidth="183.0" promptText="Wybierz poziom trudności" />

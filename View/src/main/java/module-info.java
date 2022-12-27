@@ -1,7 +1,8 @@
-module pl.sudoku {
-    requires javafx.controls;
+module ViewProject {
     requires javafx.fxml;
+    requires javafx.controls;
+    requires ModelProject;
 
-    opens pl.sudoku to javafx.fxml;
-    exports pl.sudoku;
+    opens pl.javafx to javafx.fxml;
+    exports pl.javafx;
 }
