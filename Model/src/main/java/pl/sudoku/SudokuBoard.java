@@ -219,4 +219,15 @@ public class SudokuBoard implements Serializable, Cloneable {
 
         return board[i][j];
     }
+
+    public void clearBoard() {
+
+        for (int i = 0; i < getCols(); i++) {
+
+            for (int j = 0; j < getRows(); j++) {
+
+                this.set(i, j, 0);
+            }
+        }
+    }
 }

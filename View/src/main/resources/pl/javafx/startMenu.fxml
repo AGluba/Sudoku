@@ -6,7 +6,11 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="347.0" prefWidth="402.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.javafx.StartMenuController">
    <children>
-      <Button fx:id="startButton" layoutX="137.0" layoutY="165.0" mnemonicParsing="false" onAction="#startButtonPress" prefHeight="57.0" prefWidth="127.0" text="Start" />
-      <ComboBox fx:id="chooseDifficulty" layoutX="109.0" layoutY="26.0" prefHeight="49.0" prefWidth="183.0" promptText="Wybierz poziom trudności" />
+      <Button fx:id="startButton" layoutX="137.0" layoutY="99.0" mnemonicParsing="false" onAction="#startButtonPress" prefHeight="49.0" prefWidth="127.0" text="%start" />
+      <ComboBox fx:id="chooseDifficulty" layoutX="109.0" layoutY="26.0" prefHeight="49.0" prefWidth="183.0" promptText="%select" />
+      <Button fx:id="loadGame" layoutX="137.0" layoutY="174.0" mnemonicParsing="false" onAction="#loadGameButton" prefHeight="49.0" prefWidth="127.0" text="%load" />
+      <Button layoutX="9.0" layoutY="255.0" mnemonicParsing="false" onAction="#changeEnglishButton" prefHeight="49.0" prefWidth="100.0" text="%lang_en" />
+      <Button layoutX="292.0" layoutY="255.0" mnemonicParsing="false" onAction="#changePolishButton" prefHeight="49.0" prefWidth="100.0" text="%lang_pl" />
+      <Button layoutX="137.0" layoutY="255.0" mnemonicParsing="false" onAction="#authorsShowButton" prefHeight="49.0" prefWidth="127.0" text="%authors" />
    </children>
 </Pane>

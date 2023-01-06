@@ -40,6 +40,27 @@ public class SudokuBoardTest {
     }
 
     @Test
+    public void clearBoardTest() {
+        SudokuSolver solver = new BacktrackingSudokuSolver();
+        SudokuBoard board = new SudokuBoard(solver);
+        board.solveGame();
+        board.clearBoard();
+
+        boolean check = false;
+        for (int i = 0; i < board.getCols(); i++) {
+
+            for (int j = 0; j < board.getRows(); j++) {
+
+                if (board.get(i, j) != 0) {
+
+                    check = true;
+                }
+            }
+        }
+
+        assertFalse(check);
+    }
+    @Test
     public void getRowsTest() {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard board = new SudokuBoard(solver);

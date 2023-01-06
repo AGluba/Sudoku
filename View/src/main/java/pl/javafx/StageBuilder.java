@@ -1,6 +1,7 @@
 package pl.javafx;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,7 +15,8 @@ public class StageBuilder {
     }
 
     private static Parent loadFxml(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+        ResourceBundle resources = ResourceBundle.getBundle("bundles.text");
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"), resources);
         return fxmlLoader.load();
     }
 
