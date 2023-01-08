@@ -25,7 +25,6 @@ public class BoardViewController implements Initializable {
     private GridPane gridP;
     private SudokuBoard board;
     private SudokuBoard correctBoard;
-    private final SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
     Dao<SudokuBoard> dao;
     private SudokuBoard availableFields;
     ResourceBundle bundle = ResourceBundle.getBundle("bundles.text");
@@ -69,53 +68,16 @@ public class BoardViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        if (StartMenuController.isFromFile()) {
-            dao = factory.getFileDao("board");
-            board = dao.read();
-
-            dao = factory.getFileDao("availableFields");
-            availableFields = dao.read();
-
-            dao = factory.getFileDao("correctBoard");
-            correctBoard = dao.read();
-        } else {
-            board = new SudokuBoard(new BacktrackingSudokuSolver());
-            board.solveGame();
-
-            try {
-                correctBoard = board.clone();
-            } catch (CloneNotSupportedException e) {
-                throw new RuntimeException(e);
-            }
-
-            BoardBuilder.getBoardToPlay(board, StartMenuController.getLevel());
-            availableFields = new SudokuBoard(new BacktrackingSudokuSolver());
-            availableFields.clearBoard();
-
-            for (int i = 0; i < board.getCols(); i++) {
-
-                for (int j = 0; j < board.getRows(); j++) {
-
-                    if (board.get(i, j) == 0) {
-
-                        availableFields.set(i, j, 1);
-                    }
-                }
-            }
-
+        try {
+            loadFiles();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
 
         fillGrid();
     }
 
     public void checkButton(ActionEvent actionEvent) {
-        for (int i = 0; i < board.getCols(); i++) {
-            for (int j = 0; j < board.getRows(); j++) {
-                System.out.printf("%5d ", correctBoard.get(i, j));
-            }
-            System.out.println();
-        }
-
         String s;
         if (correctBoard.equals(board)) {
             s = bundle.getString("win");
@@ -133,15 +95,54 @@ public class BoardViewController implements Initializable {
         dialogStage.show();
     }
 
-    public void saveButton(ActionEvent actionEvent) {
-        dao = factory.getFileDao("board");
-        dao.write(board);
+    public void saveButton(ActionEvent actionEvent) throws Exception {
+        try (Dao<SudokuBoard> daoBoard = SudokuBoardDaoFactory.getFileDao(
+                "View/src/main/resources/board");
+             Dao<SudokuBoard> daoFields = SudokuBoardDaoFactory.getFileDao(
+                     "View/src/main/resources/availableFields");
+             Dao<SudokuBoard> daoCorrect = SudokuBoardDaoFactory.getFileDao(
+                     "View/src/main/resources/correctBoard")) {
 
-        dao = factory.getFileDao("availableFields");
-        dao.write(availableFields);
+             daoBoard.write(board);
+             daoCorrect.write(correctBoard);
+             daoFields.write(availableFields);
+        }
+    }
 
-        dao = factory.getFileDao("correctBoard");
-        dao.write(correctBoard);
+    public void loadFiles() throws Exception {
+        if (StartMenuController.isFromFile()) {
+            try (Dao<SudokuBoard> daoBoard = SudokuBoardDaoFactory.getFileDao(
+                    "View/src/main/resources/board");
+                 Dao<SudokuBoard> daoFields = SudokuBoardDaoFactory.getFileDao(
+                         "View/src/main/resources/availableFields");
+                 Dao<SudokuBoard> daoCorrect = SudokuBoardDaoFactory.getFileDao(
+                         "View/src/main/resources/correctBoard")) {
+
+                 board = daoBoard.read();
+                 correctBoard = daoCorrect.read();
+                 availableFields = daoFields.read();
+            }
+
+        } else {
+            board = new SudokuBoard(new BacktrackingSudokuSolver());
+            board.solveGame();
+            correctBoard = board.clone();
+            BoardBuilder.getBoardToPlay(board, StartMenuController.getLevel());
+            availableFields = new SudokuBoard(new BacktrackingSudokuSolver());
+            availableFields.clearBoard();
+
+            for (int i = 0; i < board.getCols(); i++) {
+
+                for (int j = 0; j < board.getRows(); j++) {
+
+                    if (board.get(i, j) == 0) {
+
+                        availableFields.set(i, j, 1);
+                    }
+                }
+            }
+
+        }
     }
 }
 

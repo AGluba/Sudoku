@@ -1,6 +1,7 @@
 package pl.sudoku;
 
 import java.io.Serializable;
+import java.util.ResourceBundle;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -19,11 +20,13 @@ public class SudokuField implements Serializable, Comparable<SudokuField>, Clone
         return value;
     }
 
-    public void setFieldValue(int value) {
+    public void setFieldValue(int value) throws SudokuFieldException {
 
+        ResourceBundle bundle = ResourceBundle.getBundle("bundlesE.exceptions");
         if (0 <= value && value <= 9) {
-
             this.value = value;
+        } else {
+            throw new SudokuFieldException(bundle.getString("wrongNumber"));
         }
     }
 
@@ -78,11 +81,13 @@ public class SudokuField implements Serializable, Comparable<SudokuField>, Clone
     }
 
     @Override
-    public SudokuField clone() {
+    public SudokuField clone() throws CloneException {
+
+        ResourceBundle bundle = ResourceBundle.getBundle("bundlesE.exceptions");
         try {
             return (SudokuField) super.clone();
         } catch (CloneNotSupportedException e) {
-            throw new AssertionError();
+            throw new CloneException(bundle.getString("cloneFail"));
         }
     }
 }

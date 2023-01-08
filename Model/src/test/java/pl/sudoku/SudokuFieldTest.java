@@ -21,10 +21,8 @@ public class SudokuFieldTest {
 
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard board = new SudokuBoard(solver);
-        int temp = board.get(0, 1);
-        board.set(0, 1, 12);
 
-        assertEquals(board.get(0, 1), temp);
+        assertThrows(SudokuFieldException.class, () -> {board.set(1, 1, 30);});
     }
 
     @Test
@@ -32,10 +30,8 @@ public class SudokuFieldTest {
 
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard board = new SudokuBoard(solver);
-        int temp = board.get(0, 1);
-        board.set(0, 1, -30);
 
-        assertEquals(board.get(0, 1), temp);
+        assertThrows(SudokuFieldException.class, () -> {board.set(1, 1, -30);});
     }
 
     @Test
@@ -109,7 +105,7 @@ public class SudokuFieldTest {
     }
 
     @Test
-    public void fieldCloneTest() {
+    public void fieldCloneTest() throws CloneException {
 
         SudokuField field1 = new SudokuField(9);
         SudokuField field2 = field1.clone();

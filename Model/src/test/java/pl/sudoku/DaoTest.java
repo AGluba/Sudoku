@@ -5,36 +5,35 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class DaoTest {
-
-    private final SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
-    Dao<SudokuBoard> dao;
-
     @Test
-    public void writeAndReadTest() {
+    public void writeAndReadTest() throws Exception {
         SudokuBoard board = new SudokuBoard(new BacktrackingSudokuSolver());
         board.solveGame();
+        SudokuBoard board2;
 
-        dao = factory.getFileDao("board");
-        dao.write(board);
-
-        SudokuBoard board2 = dao.read();
+        try (Dao<SudokuBoard> dao = SudokuBoardDaoFactory.getFileDao("board")) {
+            dao.write(board);
+            board2 = dao.read();
+        }
 
         assertEquals(board, board2);
     }
 
     @Test
-    public void IOExceptionTest() {
+    public void IOExceptionTest() throws Exception {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard testBoard = new SudokuBoard(solver);
         testBoard.solveGame();
-        dao = factory.getFileDao("?.txt");
 
-        assertThrows(RuntimeException.class, () -> dao.write(testBoard));
+        try (Dao<SudokuBoard> dao = SudokuBoardDaoFactory.getFileDao("?")) {
+            assertThrows(OperationOnFileException.class, () -> dao.write(testBoard));
+        }
     }
 
     @Test
-    public void readIOExceptionTest() {
-        dao = factory.getFileDao("file.txt");
-        assertThrows(RuntimeException.class, dao::read);
+    public void readIOExceptionTest() throws Exception {
+        try (Dao<SudokuBoard> dao = SudokuBoardDaoFactory.getFileDao("test")) {
+            assertThrows(OperationOnFileException.class, dao::read);
+        }
     }
 }
