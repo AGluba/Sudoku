@@ -79,3 +79,45 @@
 2023-01-08 19:23:18,112 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - Pliki zamkniete
 2023-01-08 19:23:18,112 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - Pliki zamkniete
 2023-01-08 19:23:18,112 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - Pliki zamkniete
+2023-01-09 11:35:20,513 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - View/src/main/resources/board.txt Plik zapisany
+2023-01-09 11:35:20,521 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - View/src/main/resources/correctBoard.txt Plik zapisany
+2023-01-09 11:35:20,523 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - View/src/main/resources/availableFields.txt Plik zapisany
+2023-01-09 11:35:20,524 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - Pliki zamkniete
+2023-01-09 11:35:20,525 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - Pliki zamkniete
+2023-01-09 11:35:20,525 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - Pliki zamkniete
+2023-01-09 11:35:38,554 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - View/src/main/resources/board.txt Plik wczytany
+2023-01-09 11:35:38,561 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - View/src/main/resources/correctBoard.txt Plik wczytany
+2023-01-09 11:35:38,564 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - View/src/main/resources/availableFields.txt Plik wczytany
+2023-01-09 11:35:38,565 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - Pliki zamkniete
+2023-01-09 11:35:38,565 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - Pliki zamkniete
+2023-01-09 11:35:38,565 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - Pliki zamkniete
+2023-01-09 13:04:45,877 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - View/src/main/resources/board.txt Plik zapisany
+2023-01-09 13:04:45,885 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - View/src/main/resources/correctBoard.txt Plik zapisany
+2023-01-09 13:04:45,888 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - View/src/main/resources/availableFields.txt Plik zapisany
+2023-01-09 13:04:45,889 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - Pliki zamkniete
+2023-01-09 13:04:45,889 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - Pliki zamkniete
+2023-01-09 13:04:45,890 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - Pliki zamkniete
+2023-01-09 13:04:55,876 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - View/src/main/resources/board.txt Plik wczytany
+2023-01-09 13:04:55,890 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - View/src/main/resources/correctBoard.txt Plik wczytany
+2023-01-09 13:04:55,896 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - View/src/main/resources/availableFields.txt Plik wczytany
+2023-01-09 13:04:55,896 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - Pliki zamkniete
+2023-01-09 13:04:55,897 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - Pliki zamkniete
+2023-01-09 13:04:55,897 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - Pliki zamkniete
+2023-01-09 13:08:15,628 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - View/src/main/resources/board.txt Plik wczytany
+2023-01-09 13:08:15,637 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - View/src/main/resources/correctBoard.txt Plik wczytany
+2023-01-09 13:08:15,641 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - View/src/main/resources/availableFields.txt Plik wczytany
+2023-01-09 13:08:15,642 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - Pliki zamkniete
+2023-01-09 13:08:15,642 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - Pliki zamkniete
+2023-01-09 13:08:15,642 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - Pliki zamkniete
+2023-01-09 14:50:40,889 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - View/src/main/resources/board.txt Plik zapisany
+2023-01-09 14:50:40,898 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - View/src/main/resources/correctBoard.txt Plik zapisany
+2023-01-09 14:50:40,901 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - View/src/main/resources/availableFields.txt Plik zapisany
+2023-01-09 14:50:40,902 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - Pliki zamkniete
+2023-01-09 14:50:40,902 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - Pliki zamkniete
+2023-01-09 14:50:40,902 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - Pliki zamkniete
+2023-01-09 14:50:51,611 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - View/src/main/resources/board.txt Plik wczytany
+2023-01-09 14:50:51,619 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - View/src/main/resources/correctBoard.txt Plik wczytany
+2023-01-09 14:50:51,622 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - View/src/main/resources/availableFields.txt Plik wczytany
+2023-01-09 14:50:51,622 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - Pliki zamkniete
+2023-01-09 14:50:51,622 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - Pliki zamkniete
+2023-01-09 14:50:51,623 [JavaFX Application Thread] INFO   pl.sudoku.FileSudokuBoardDao - Pliki zamkniete

@@ -2,7 +2,7 @@ package pl.sudoku;
 
 public interface Dao<T> extends AutoCloseable {
 
-    T read() throws DaoException;
+    T read() throws DaoException, JdbcException;
 
-    void write(T t) throws DaoException;
+    void write(T t) throws DaoException, JdbcException;
 }

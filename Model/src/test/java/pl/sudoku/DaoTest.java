@@ -3,6 +3,7 @@ package pl.sudoku;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.testng.AssertJUnit.assertNotSame;
 
 public class DaoTest {
     @Test
@@ -34,6 +35,27 @@ public class DaoTest {
     public void readIOExceptionTest() throws Exception {
         try (Dao<SudokuBoard> dao = SudokuBoardDaoFactory.getFileDao("test")) {
             assertThrows(OperationOnFileException.class, dao::read);
+        }
+    }
+
+    @Test
+    public void databaseTest() throws Exception {
+        SudokuSolver solver = new BacktrackingSudokuSolver();
+        SudokuBoard testBoard = new SudokuBoard(solver);
+        SudokuBoard testBoard2;
+        testBoard.solveGame();
+
+        try(Dao<SudokuBoard> database = SudokuBoardDaoFactory.getDatabaseDao("board")) {
+            database.write(testBoard);
+            testBoard2 = database.read();
+            assertEquals(testBoard, testBoard2);
+            assertNotSame(testBoard, testBoard2);
+        }
+    }
+    @Test
+    public void readDataBaseTest() throws Exception {
+        try (Dao<SudokuBoard> database = SudokuBoardDaoFactory.getDatabaseDao("?")) {
+            assertThrows(JdbcException.class, database::read);
         }
     }
 }

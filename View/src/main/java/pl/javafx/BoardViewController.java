@@ -25,7 +25,6 @@ public class BoardViewController implements Initializable {
     private GridPane gridP;
     private SudokuBoard board;
     private SudokuBoard correctBoard;
-    Dao<SudokuBoard> dao;
     private SudokuBoard availableFields;
     ResourceBundle bundle = ResourceBundle.getBundle("bundles.text");
 
@@ -96,11 +95,11 @@ public class BoardViewController implements Initializable {
     }
 
     public void saveButton(ActionEvent actionEvent) throws Exception {
-        try (Dao<SudokuBoard> daoBoard = SudokuBoardDaoFactory.getFileDao(
+        try (Dao<SudokuBoard> daoBoard = SudokuBoardDaoFactory.getDatabaseDao(
                 "View/src/main/resources/board");
-             Dao<SudokuBoard> daoFields = SudokuBoardDaoFactory.getFileDao(
+             Dao<SudokuBoard> daoFields = SudokuBoardDaoFactory.getDatabaseDao(
                      "View/src/main/resources/availableFields");
-             Dao<SudokuBoard> daoCorrect = SudokuBoardDaoFactory.getFileDao(
+             Dao<SudokuBoard> daoCorrect = SudokuBoardDaoFactory.getDatabaseDao(
                      "View/src/main/resources/correctBoard")) {
 
              daoBoard.write(board);
@@ -111,11 +110,11 @@ public class BoardViewController implements Initializable {
 
     public void loadFiles() throws Exception {
         if (StartMenuController.isFromFile()) {
-            try (Dao<SudokuBoard> daoBoard = SudokuBoardDaoFactory.getFileDao(
+            try (Dao<SudokuBoard> daoBoard = SudokuBoardDaoFactory.getDatabaseDao(
                     "View/src/main/resources/board");
-                 Dao<SudokuBoard> daoFields = SudokuBoardDaoFactory.getFileDao(
+                 Dao<SudokuBoard> daoFields = SudokuBoardDaoFactory.getDatabaseDao(
                          "View/src/main/resources/availableFields");
-                 Dao<SudokuBoard> daoCorrect = SudokuBoardDaoFactory.getFileDao(
+                 Dao<SudokuBoard> daoCorrect = SudokuBoardDaoFactory.getDatabaseDao(
                          "View/src/main/resources/correctBoard")) {
 
                  board = daoBoard.read();
